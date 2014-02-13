@@ -9,6 +9,7 @@ django-braces
 django-model-utils
 
 # http://michal.karzynski.pl/blog/2013/07/14/using-redis-as-django-session-store-and-cache-backend/
+redis
 django-redis-sessions
 django-redis-cache
 
