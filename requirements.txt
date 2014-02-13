@@ -1,0 +1,20 @@
+django
+south
+
+django-compressor
+django-crispy-forms
+django-debug-toolbar
+django-storages
+django-braces
+django-model-utils
+
+# http://michal.karzynski.pl/blog/2013/07/14/using-redis-as-django-session-store-and-cache-backend/
+django-redis-sessions
+django-redis-cache
+
+celery
+django-celery-email
+
+psycopg2
+gunicorn
+gevent
