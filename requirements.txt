@@ -4,18 +4,17 @@ south
 django-compressor
 django-crispy-forms
 django-debug-toolbar
-django-storages
 django-braces
+django-extensions
+django-storages
+django-secure
 django-model-utils
-django-tenant-schemas
+django-autofixture
+django-easy-pjax
 
 # http://michal.karzynski.pl/blog/2013/07/14/using-redis-as-django-session-store-and-cache-backend/
-redis
-django-redis-sessions
-django-redis-cache
-
-celery
-django-celery-email
+#django-redis-sessions
+#django-redis-cache
 
 psycopg2
 gunicorn
