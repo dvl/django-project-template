@@ -11,11 +11,11 @@ BASE_DIR = os.path.dirname(__file__)
 SECRET_KEY = '{{ secret_key }}'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = not DEBUG
 
 ALLOWED_HOSTS = ['*']
 
@@ -56,7 +56,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'django.core.context_processors.tz',
-    # 'django.core.context_processors.request',
+    'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
 )
 
@@ -69,6 +69,7 @@ STATICFILES_FINDERS = (
 
 COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc {infile} {outfile}'),
+    ('text/coffeescript', 'coffee --compile --stdio'),
 )
 
 COMPRESS_CSS_FILTERS = (
@@ -105,9 +106,9 @@ WSGI_APPLICATION = 'wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "db",
-        "USER": "user",
-        "PASSWORD": "pass",
+        "NAME": "",
+        "USER": "",
+        "PASSWORD": "",
         "HOST": "localhost",
         "PORT": "5432",
     },
