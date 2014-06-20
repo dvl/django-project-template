@@ -15,9 +15,8 @@
         </div>
     {% endblock %}
 
-    {% compress js %}
-        <script src="{% static 'js/jquery-2.1.0.js' %}"></script>
-        <script src="{% static 'js/bootstrap.js' %}"></script>
-    {% endcompress %}
+    {% compressed_js 'jquery' %}
+    {% compressed_js 'bootstrap' %}
+    {% compressed_js 'site' %}
 </body>
 </html>

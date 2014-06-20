@@ -17,6 +17,8 @@ INSTALLED_APPS = (
     'braces',
     'pipeline',
     'south',
+    # apps
+    
 )
 
 MIDDLEWARE_CLASSES = (
