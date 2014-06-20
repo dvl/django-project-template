@@ -3,23 +3,6 @@
 import os
 BASE_DIR = os.path.dirname(__file__)
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '{{ secret_key }}'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-TEMPLATE_DEBUG = DEBUG
-
-COMPRESS_ENABLED = not DEBUG
-
-ALLOWED_HOSTS = ['*']
-
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -31,12 +14,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 3rd
+    'braces',
+    'pipeline',
     'south',
-    'compressor',
-    'debug_toolbar',
-    'crispy_forms',
-    # apps
-    'apps.core',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -64,21 +44,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
-    'compressor.finders.CompressorFinder',
-)
-
-COMPRESS_PRECOMPILERS = (
-    ('text/less', 'lessc {infile} {outfile}'),
-    ('text/coffeescript', 'coffee --compile --stdio'),
-)
-
-COMPRESS_CSS_FILTERS = (
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.CSSMinFilter',
-)
-
-COMPRESS_JS_FILTERS = (
-    'compressor.filters.jsmin.JSMinFilter',
 )
 
 TEMPLATE_DIRS = (
@@ -90,7 +55,7 @@ STATICFILES_DIRS = (
 )
 
 FIXTURE_DIRS = (
-    os.path.join(BASE_DIR, 'config', 'fixtures'),
+    os.path.join(BASE_DIR, 'fixtures'),
 )
 
 COMPRESS_ROOT = os.path.join(BASE_DIR, 'tmp')
@@ -98,30 +63,6 @@ COMPRESS_ROOT = os.path.join(BASE_DIR, 'tmp')
 ROOT_URLCONF = 'urls'
 
 WSGI_APPLICATION = 'wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "",
-        "USER": "",
-        "PASSWORD": "",
-        "HOST": "localhost",
-        "PORT": "5432",
-    },
-}
-
-# Cache
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': ''
-    }
-}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -141,20 +82,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# E-mail settings
-
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'user@domain.tld'
-EMAIL_HOST_PASSWORD = 'passw0rd'
-EMAIL_PORT = 587
-
-# Form Crispy
-
-CRISPY_TEMPLATE_PACK = 'bootstrap'
-CRISPY_FAIL_SILENTLY = not DEBUG
-
-try:
-    from config.local_settings import *
-except ImportError:
-    pass
+from .pipeline import *

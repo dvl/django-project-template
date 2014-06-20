@@ -1,16 +1,12 @@
-{% load staticfiles %}
-{% load compress %}
+{% load staticfiles compressed %}
 
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Projeto{% endblock %}</title>
-    {% compress css %}
-        <link rel="stylesheet" href="{% static 'bootstrap/less/bootstrap.less' %}" type="text/less">
-        <link rel="stylesheet" href="{% static 'bootstrap/less/theme.less' %}" type="text/less">
-        <link rel="stylesheet" href="{% static 'css/main.less' %}" type="text/less">
-    {% endcompress %}
+    {% compressed_css 'bootstrap' %}
+    {% compressed_css 'site' %}
 </head>
 <body>
     {% block container %}

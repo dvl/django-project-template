@@ -1,0 +1,7 @@
+django==1.6.5
+django-braces
+django-pipeline
+
+south
+
+psycopg2
