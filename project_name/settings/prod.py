@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from .common import *
 
 SECRET_KEY = 'prod_{{ secret_key }}'

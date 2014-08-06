@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 PIPELINE_CSS = {
     'bootstrap': {
         'source_filenames': (
