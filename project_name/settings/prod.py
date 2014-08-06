@@ -1,4 +1,4 @@
-from .base import *
+from .common import *
 
 SECRET_KEY = 'prod_{{ secret_key }}'
 
@@ -6,9 +6,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = ['*']
-
-INSTALLED_APPS += ('storages', )
+ALLOWED_HOSTS = ['example.tld']
 
 DATABASES = {
     "default": {

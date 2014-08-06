@@ -1,4 +1,4 @@
-from .base import *
+from .common import *
 
 SECRET_KEY = 'dev_{{ secret_key }}'
 
@@ -6,7 +6,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS += ('debug_toolbar', )
 

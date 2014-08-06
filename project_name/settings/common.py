@@ -18,7 +18,7 @@ INSTALLED_APPS = (
     'pipeline',
     'south',
     # apps
-    
+    '{{ project_name }}.apps.core',    
 )
 
 MIDDLEWARE_CLASSES = (
