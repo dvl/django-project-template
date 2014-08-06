@@ -62,9 +62,9 @@ FIXTURE_DIRS = (
 
 COMPRESS_ROOT = os.path.join(BASE_DIR, 'tmp')
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = '{{ project_name }}.urls'
 
-WSGI_APPLICATION = 'wsgi.application'
+WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
