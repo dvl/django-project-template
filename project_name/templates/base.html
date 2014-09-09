@@ -1,20 +1,16 @@
-{% load staticfiles compressed %}
+{% load compressed %}
 
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Projeto{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
+
     {% compressed_css 'bootstrap' %}
     {% compressed_css 'site' %}
 </head>
 <body>
-    {% block container %}
-        <div class="container">
-            {% block content %}{% endblock %}
-        </div>
-    {% endblock %}
-
+    
     {% compressed_js 'jquery' %}
     {% compressed_js 'bootstrap' %}
     {% compressed_js 'site' %}

@@ -1,12 +1,41 @@
-# -*- coding: utf-8 -*-
+"""
+Django settings for {{ project_name }} project.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/1.6/topics/settings/
+
+For the full list of settings and their values, see
+https://docs.djangoproject.com/en/1.6/ref/settings/
+"""
 
 import os
-BASE_DIR = os.path.dirname(__file__)
+
+from decouple import config, Csv
+from dj_database_url import parse as db_url
+from unipath import Path
+
+BASE_DIR = Path(__file__).parent.parent
+
+SITE_ID = 1
+
+ADMINS = (
+    ('you', 'you@domail.tld'),
+)
+
+
+SECRET_KEY = config('SECRET_KEY')
+
+DEBUG = config('DEBUG', default=False, cast=bool)
+
+TEMPLATE_DEBUG = DEBUG
+
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*', cast=Csv())
+
 
 # Application definition
 
 INSTALLED_APPS = (
-    # Django
+    # django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -14,11 +43,13 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 3rd
-    'braces',
+    'bootstrap3',
+    'debug_toolbar.apps.DebugToolbarConfig',
+    'django_extensions',
     'pipeline',
-    'south',
-    # apps
-    '{{ project_name }}.apps.core',    
+    'reversion',
+    # app
+    '{{ project_name }}.core',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -30,7 +61,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
@@ -40,12 +70,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
-)
-
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 TEMPLATE_DIRS = (
@@ -60,18 +84,22 @@ FIXTURE_DIRS = (
     os.path.join(BASE_DIR, 'fixtures'),
 )
 
-COMPRESS_ROOT = os.path.join(BASE_DIR, 'tmp')
-
 ROOT_URLCONF = '{{ project_name }}.urls'
 
 WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
 
+
+# Database
+# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+
+DATABASES = {'default': config('DATABASE_URL', cast=db_url)}
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'pt_BR'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -79,9 +107,18 @@ USE_L10N = True
 
 USE_TZ = True
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'tmp', 'static-root')
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 from .pipeline import *
