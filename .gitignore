@@ -1,9 +1,3 @@
+*.pyc
+
 .env
-.venv
-*.py[cod]
-*.log
-*.pid
-static-root/
-tmp/
-_build/
-celerybeat-schedule
