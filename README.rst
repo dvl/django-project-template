@@ -14,6 +14,4 @@ Installation
 
   $ django-admin.py startproject --template=https://github.com/dvl/django-project-template/archive/master.zip my-project
   $ cd my-project
-  $ npm install
-  $ bower install
   $ pip install -r requirements.txt
