@@ -128,8 +128,6 @@ STATICFILES_DIRS = (
 
 AUTH_USER_MODEL = 'accounts.User'
 
-SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL
-
 LOGIN_URL = '/auth/login/'
 
 LOGOUT_URL = '/auth/logout/'
