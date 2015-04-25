@@ -1,0 +1,22 @@
+{
+  "name": "{{ project_name }}",
+  "version": "1.0.0",
+  "authors": [
+    "Name <email@example.tld>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "font-awesome": "~4.3.0"
+  }
+}
