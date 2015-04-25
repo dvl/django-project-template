@@ -31,7 +31,8 @@ Featuring
 * Custom login page based on `contrib.auth` (so maybe people will stop doing
   it from scratch). -- not done yet
 * ``bower`` for assets management.
-* ``Procfile``, ``whitenoise`` and ``waitress-server`` for easy deployment on Heroku.
+* ``Procfile``, ``whitenoise``, ``waitress-server`` and ``psycopg2`` for
+  easy deployment on Heroku.
 * ``Makefile`` to run tests and get ``coverage`` report.
 * ``bcrypt`` instead of ``pbkdf2`` (see notes bellow).
 
