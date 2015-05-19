@@ -17,11 +17,29 @@ Installation
   $ cp .env-example .env
   $ vim .env (to edit your database settings)
   $ pip install -r requirements.txt
+  $ python manage.py migrate
+
+*****
+Usage
+*****
+
+To start development server
+
+.. code-block:: sh
+
+  $ make serve
+
+To run tests and get code coverage
+
+.. code-block:: sh
+
+  $ make test
 
 *********
 Featuring
 *********
 
+* Django 1.8
 * ``django-debug-toolbar`` and ``django-extensions`` because every project should
   have it.
 * ``django-flat-theme`` that probably will be included in a future Django's
