@@ -47,7 +47,7 @@ Featuring
 * A ``settings.py`` compatible with 12factor_ powered by ``python-decouple``
   and ``dj-database-url``.
 * Custom home page.
-* Custom login and password change page based on `contrib.auth`
+* Custom login and password change page based on ``contrib.auth``
   (so maybe people will stop doing it from scratch).
 * ``bower`` and ``django-compressor`` for assets management.
 * ``django-crispy-forms`` for easy form display.
