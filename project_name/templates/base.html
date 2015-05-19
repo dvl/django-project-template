@@ -1,0 +1,132 @@
+{% load compress %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{% block title %}{% endblock %}</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="//fonts.googleapis.com/css?family=Roboto:400,300" rel="stylesheet" type="text/css">
+
+  {% compress css %}
+    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.css' %}">
+  {% endcompress %}
+
+  {% compress css %}
+    <link rel="stylesheet" type="text/less" href="{% static 'less/site.less' %}">
+    <link rel="stylesheet" type="text/less" href="{% static 'less/print.less' %}">
+  {% endcompress %}
+
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  {% block body %}
+    {% block navbar %}
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project Name</a>
+          </div>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            {% if user.is_authenticated %}
+              <ul class="nav navbar-nav">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu #1<span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Submenu #1.1</a></li>
+                    <li><a href="#">Submenu #1.2</a></li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="#">Menu #2</a>
+                </li>
+
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu #3 <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Submenu #3.1</a></li>
+                  </ul>
+                </li>
+              </ul>
+            {% endif %}
+
+            <ul class="nav navbar-nav navbar-right">
+              {% if not user.is_authenticated %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+              {% else %}
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    {{ user.username }} <span class="caret"></span>
+                  </a>
+
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="{% url 'password_change' %}">Password Change</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                  </ul>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    {% endblock %}
+
+    {% block container %}
+      <div class="container">
+        {% if messages %}
+          <div class="row">
+            <div class="col-md-12">
+              {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                  {{ message }}
+
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="row">
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    {% endblock %}
+
+    {% block footer %}
+      <footer class="navbar-default">
+        <div class="container">
+          <p class="text-muted">&copy; Project Name 2015</p>
+        </div>
+      </footer>
+    {% endblock %}
+  {% endblock %}
+
+  {% compress js %}
+    <script type="text/javascript" src="{% static 'jquery/dist/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap/dist/js/bootstrap.js' %}"></script>
+  {% endcompress %}
+
+  {% compress js %}
+    <script type="text/coffeescript" src="{% static 'coffee/main.coffee' %}"></script>
+  {% endcompress %}
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

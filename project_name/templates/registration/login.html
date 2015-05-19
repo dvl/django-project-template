@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        document.getElementById('id_username').focus();
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Login
+            </div>
+
+            <div class="panel-body">
+                {% if form.errors and not form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {% if form.errors.items|length == 1 %}
+                            {% trans "Please correct the error below." %}
+                        {% else %}
+                            {% trans "Please correct the errors below." %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {% for error in form.non_field_errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                <form class="form-horizontal" action="{{ app_path }}" method="POST">
+                    {% csrf_token %}
+
+                    <div class="form-group {% if form.username.errors %}has-error{% endif %}">
+                        <label for="{{ form.username.id_for_label }}" class="control-label col-md-4">
+                            {{ form.username.label }}
+                        </label>
+
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" tabindex="1">
+
+                            {% for error in form.username.errors %}
+                                <p class="help-block">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="form-group {% if form.username.errors %}has-error{% endif %}">
+                        <label for="{{ form.password.id_for_label }}" class="control-label col-md-4">
+                            {{ form.password.label }}
+                        </label>
+
+                        <div class="col-md-6">
+                            <input type="password" class="form-control" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}" tabindex="2">
+
+                            {% for error in form.password.errors %}
+                                <p class="help-block">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-4">
+                            <button type="submit" class="btn btn-primary" tabindex="3">
+                                {% trans 'Log in' %}
+                            </button>
+
+                            {% if password_reset_url %}
+                                <a class="btn btn-link" href="{{ password_reset_url }}" tabindex="4">
+                                    {% trans 'Forgotten your password or username?' %}
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
