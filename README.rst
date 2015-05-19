@@ -46,9 +46,11 @@ Featuring
   release, so you can get familiar with it.
 * A ``settings.py`` compatible with 12factor_ powered by ``python-decouple``
   and ``dj-database-url``.
-* Custom login page based on `contrib.auth` (so maybe people will stop doing
-  it from scratch). -- not done yet
-* ``bower`` for assets management.
+* Custom home page.
+* Custom login and password change page based on `contrib.auth`
+  (so maybe people will stop doing it from scratch).
+* ``bower`` and ``django-compressor`` for assets management.
+* ``django-crispy-forms`` for easy form display.
 * ``Procfile``, ``whitenoise``, ``waitress-server`` and ``psycopg2`` for
   easy deployment on Heroku.
 * ``Makefile`` to run tests and get ``coverage`` report.
