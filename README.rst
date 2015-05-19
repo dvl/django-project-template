@@ -14,7 +14,7 @@ Installation
   $ django-admin.py startproject --extension=txt,json --name=Makefile,Procfile,.env-example --template=https://github.com/dvl/django-project-template/archive/master.zip my_project
   $ cd my_project
   $ npm install
-  $ cp .env-exemple .env
+  $ cp .env-example .env
   $ vim .env (to edit your database settings)
   $ pip install -r requirements.txt
 
