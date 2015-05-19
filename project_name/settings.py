@@ -46,9 +46,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 3rd
+    'compressor',
+    'crispy_forms',
     'debug_toolbar',
-    'django_extensions',
-    # project
+    'django_extensions',    # project
     '{{ project_name }}.accounts',
     '{{ project_name }}.core',
 )
@@ -109,7 +110,7 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/{{ docs_version }}/howto/static-files/
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
 
@@ -123,6 +124,31 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, '..', 'bower_components'),
 )
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_PRECOMPILERS = (
+    ('text/coffeescript', 'coffee --compile --stdio'),
+    ('text/less', 'lessc --include-path=%s {infile} {outfile}' % STATICFILES_DIRS[1]),  # fuck...
+)
+
+COMPRESS_ENABLED = config('COMPRESS_ENABLED', cast=bool, default=False)
+
+COMPRESS_OFFLINE = config('COMPRESS_OFFLINE', cast=bool, default=True)
+
+# Crispy forms
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+CRISPY_FAIL_SILENTLY = not DEBUG
+
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}
 
 
 # Auth
