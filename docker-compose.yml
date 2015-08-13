@@ -1,0 +1,16 @@
+web:
+  build: .
+  command: python manage.py runserver_plus 0.0.0.0:8000
+  ports:
+    - "8000:8000"
+  volumes:
+    - .:/usr/src/app
+  links:
+    - postgres
+  env_file:
+    - .env
+
+postgres:
+  image: postgres
+  ports:
+    - "5432:5432"
