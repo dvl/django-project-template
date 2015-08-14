@@ -1,4 +1,4 @@
-Django==1.8.1
+Django==1.8.3
 
 dj-database-url==0.3.0
 django-compressor==1.5
